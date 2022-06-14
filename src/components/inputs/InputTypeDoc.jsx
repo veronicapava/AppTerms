@@ -3,7 +3,7 @@ import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
 import MenuItem from "@mui/material/MenuItem"
 
-const currencies = [
+const documents = [
   {
     value: "Pasaporte",
     label: "Pasaporte",
@@ -14,10 +14,10 @@ const currencies = [
   },
 ]
 const InputTypeDoc = () => {
-  const [currency, setCurrency] = useState("")
+  const [document, setDocument] = useState("")
 
   const handleChange = (event) => {
-    setCurrency(event.target.value)
+    setDocument(event.target.value)
   }
   return (
     <Box
@@ -33,10 +33,10 @@ const InputTypeDoc = () => {
           id="outlined-select-currency"
           select
           label="Tipo de documento"
-          value={currency}
+          value={document}
           onChange={handleChange}
         >
-          {currencies.map((option) => (
+          {documents.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
