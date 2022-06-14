@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
 import MenuItem from "@mui/material/MenuItem"
+import { AppContext } from "../../context/AppContext"
 
 const documents = [
   {
@@ -14,11 +15,12 @@ const documents = [
   },
 ]
 const InputTypeDoc = () => {
-  const [document, setDocument] = useState("")
-
   const handleChange = (event) => {
     setDocument(event.target.value)
   }
+
+  const { document, setDocument } = useContext(AppContext)
+
   return (
     <Box
       component="form"
