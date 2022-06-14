@@ -1,14 +1,16 @@
-import { useState } from "react"
-import Box from "@mui/material/Box"
-import TextField from "@mui/material/TextField"
-import { Checkbox } from "@mui/material"
+import { useContext } from "react"
+import { AppContext } from "../../context/AppContext"
+
 import InputTypeDoc from "./InputTypeDoc"
 import ButtonTerm from "../buttons/ButtonTerm"
-import CheckBox from "../buttons/CheckBox"
 import ButtonTermHab from "../buttons/ButtonTermHab"
+import CheckBoxDis from "../buttons/CheckBoxDis"
+
+import Box from "@mui/material/Box"
+import TextField from "@mui/material/TextField"
 
 const InputNumDoc = () => {
-  const [number, setNumber] = useState("")
+  const { number, setNumber } = useContext(AppContext)
 
   let pasaporte = "^\\d{4}-PN-\\w{3}-\\d{4}$"
   let nui = "^\\d{12}$"
@@ -33,7 +35,7 @@ const InputNumDoc = () => {
           <InputTypeDoc />
           <TextField id="outlined-basic" label="Número de documento" variant="outlined" onChange={handleChange} />
           <ButtonTerm disabled />
-          <CheckBox />
+          <CheckBoxDis />
         </Box>
       )}
       {pasaporteVerificado && <ButtonTermHab />}

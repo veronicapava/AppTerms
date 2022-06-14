@@ -1,14 +1,19 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useContext } from "react"
 import Button from "@mui/material/Button"
 import Dialog from "@mui/material/Dialog"
 import DialogActions from "@mui/material/DialogActions"
 import DialogContent from "@mui/material/DialogContent"
 import DialogContentText from "@mui/material/DialogContentText"
 import DialogTitle from "@mui/material/DialogTitle"
+import { AppContext } from "../../context/AppContext"
 
 export default function TermCondi() {
   const [open, setOpen] = useState(false)
   const [scroll, setScroll] = useState("paper")
+
+  //Contexto
+
+  const { setAccept } = useContext(AppContext)
 
   const handleClickOpen = (scrollType) => () => {
     setOpen(true)
@@ -16,6 +21,10 @@ export default function TermCondi() {
   }
 
   const handleClose = () => {
+    setOpen(false)
+  }
+  const handleOk = (e) => {
+    setAccept(true)
     setOpen(false)
   }
 
@@ -56,7 +65,7 @@ export default function TermCondi() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleClose}>Aceptar</Button>
+          <Button onClick={handleOk}>OK</Button>
         </DialogActions>
       </Dialog>
     </div>

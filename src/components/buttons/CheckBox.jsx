@@ -4,7 +4,7 @@ import Checkbox from "@mui/material/Checkbox"
 const CheckBox = () => {
   return (
     <div>
-      <Checkbox disabled />
+      <Checkbox />
     </div>
   )
 }
