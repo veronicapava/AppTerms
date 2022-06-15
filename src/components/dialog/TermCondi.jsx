@@ -11,8 +11,6 @@ export default function TermCondi() {
   const [open, setOpen] = useState(false)
   const [scroll, setScroll] = useState("paper")
 
-  //Contexto
-
   const { setAccept } = useContext(AppContext)
 
   const handleClickOpen = (scrollType) => () => {
@@ -64,8 +62,12 @@ export default function TermCondi() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleOk}>OK</Button>
+          <Button variant="contained" color="error" onClick={handleClose}>
+            Cancelar
+          </Button>
+          <Button variant="contained" color="success" onClick={handleOk}>
+            OK
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

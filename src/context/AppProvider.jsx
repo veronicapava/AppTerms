@@ -2,12 +2,12 @@ import { useState } from "react"
 import { AppContext } from "./AppContext"
 
 const AppProvider = ({ children }) => {
-  const [document, setDocument] = useState("")
+  const [documentType, setDocumentType] = useState("")
   const [number, setNumber] = useState("")
   const [accept, setAccept] = useState(false)
 
   return (
-    <AppContext.Provider value={{ document, setDocument, number, setNumber, accept, setAccept }}>
+    <AppContext.Provider value={{ documentType, setDocumentType, number, setNumber, accept, setAccept }}>
       {children}
     </AppContext.Provider>
   )

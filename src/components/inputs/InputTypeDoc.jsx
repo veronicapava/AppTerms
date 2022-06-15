@@ -4,22 +4,22 @@ import TextField from "@mui/material/TextField"
 import MenuItem from "@mui/material/MenuItem"
 import { AppContext } from "../../context/AppContext"
 
-const documents = [
+const documentsTypes = [
   {
     value: "Pasaporte",
     label: "Pasaporte",
   },
   {
-    value: "Número único de Identificación",
+    value: "NUI",
     label: "NUI",
   },
 ]
 const InputTypeDoc = () => {
   const handleChange = (event) => {
-    setDocument(event.target.value)
+    setDocumentType(event.target.value)
   }
 
-  const { document, setDocument } = useContext(AppContext)
+  const { documentType, setDocumentType } = useContext(AppContext)
 
   return (
     <Box
@@ -27,7 +27,6 @@ const InputTypeDoc = () => {
       sx={{
         "& .MuiTextField-root": { m: 1, width: "25ch" },
       }}
-      noValidate
       autoComplete="off"
     >
       <div>
@@ -35,10 +34,10 @@ const InputTypeDoc = () => {
           id="outlined-select-currency"
           select
           label="Tipo de documento"
-          value={document}
+          value={documentType}
           onChange={handleChange}
         >
-          {documents.map((option) => (
+          {documentsTypes.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
