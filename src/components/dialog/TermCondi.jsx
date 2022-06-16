@@ -6,12 +6,13 @@ import DialogContent from "@mui/material/DialogContent"
 import DialogContentText from "@mui/material/DialogContentText"
 import DialogTitle from "@mui/material/DialogTitle"
 import { AppContext } from "../../context/AppContext"
+import fetchApi from "../../hooks/useFetch"
 
 export default function TermCondi() {
   const [open, setOpen] = useState(false)
   const [scroll, setScroll] = useState("paper")
 
-  const { setAccept } = useContext(AppContext)
+  const { setAccept, data, setData } = useContext(AppContext)
 
   const handleClickOpen = (scrollType) => () => {
     setOpen(true)
@@ -36,6 +37,15 @@ export default function TermCondi() {
     }
   }, [open])
 
+  useEffect(() => {
+    async function fetching() {
+      // Fetch para traernos el ultimo termino y condiciones
+      let data = await fetchApi("/ultimosTyC")
+      setData(data)
+    }
+    fetching()
+  }, [])
+
   return (
     <div>
       <Button variant="contained" onClick={handleClickOpen("paper")}>
@@ -50,15 +60,10 @@ export default function TermCondi() {
       >
         <DialogTitle id="scroll-dialog-title"> Términos y condiciones</DialogTitle>
         <DialogContent dividers={scroll === "paper"}>
-          <DialogContentText id="scroll-dialog-description" ref={descriptionElementRef} tabIndex={-1}>
-            {[...new Array(50)]
-              .map(
-                () => `Cras mattis consectetur purus sit amet fermentum.
-                    Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-                    Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
-              )
-              .join("\n")}
+          <DialogContentText id="scroll-dialog-description" ref={descriptionElementRef}>
+            {data.map((data) => (
+              <h3 key={data.id}>{JSON.stringify(data)}</h3>
+            ))}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

@@ -18,14 +18,15 @@ const InputNumDoc = () => {
   let nuiRegex = "^\\d{12}$"
 
   const handleChange = (event) => {
-    setNumber(event.target.value)
+    event.preventDefault()
+    setNumber(event.target.value.toUpperCase())
 
     if (documentType == "Pasaporte") {
-      validatePasaporte(event.target.value)
+      validatePasaporte(event.target.value.toUpperCase())
     } else if (documentType == "NUI") {
-      validateNui(event.target.value)
+      validateNui(event.target.value.toUpperCase())
     } else {
-      setErrorMessage("Ingresa datos validos")
+      setErrorMessage("Ingresa datos válidos")
     }
   }
 
@@ -35,7 +36,6 @@ const InputNumDoc = () => {
   }
   const validateNui = (value) => {
     let valor2 = value.match(nuiRegex)
-
     setNumeroVerificado(valor2)
   }
   return (
@@ -44,7 +44,7 @@ const InputNumDoc = () => {
         <Box
           component="form"
           sx={{
-            "& > :not(style)": { m: 1, width: "25ch" },
+            "& > :not(style)": { m: 1, width: "30ch" },
           }}
           noValidate
           autoComplete="off"
@@ -61,7 +61,6 @@ const InputNumDoc = () => {
           <CheckBoxDis />
           <p>Pasaporte: ####-PN-ABC-####</p>
           <p>NUI: ############</p>
-          {errorMessage ? <p className="alert alert-dismissible alert-primary">{errorMessage}</p> : null}
         </Box>
       )}
       {numeroVerificado && <ButtonTermHab />}
